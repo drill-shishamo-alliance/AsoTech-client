@@ -1,4 +1,7 @@
+import 'package:asotech_client/screens/homePage/home.dart';
+
 import 'package:flutter/material.dart';
+
 
 void main() => runApp(MyApp());
 
@@ -31,67 +34,7 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: Stack(
-        children: <Widget>[
-          Image.asset(
-            "assets/twitter.png",
-            fit: BoxFit.cover,
-            height: double.infinity,
-            width: double.infinity,
-            alignment: Alignment.center,
-            // height: MediaQuery.of(context).size.height,
-          ),
-          Align(
-            alignment: Alignment(0.0, 1.0),
-            child: Container(
-              margin: EdgeInsets.only(bottom: 30.0),
-              child: RaisedButton(
-                onPressed: () {
-                  print("pressed");
-                },
-                child: Text(
-                  "YES YES YES",
-                  style: TextStyle(color: Colors.white),
-                ),
-                color: Colors.pink[500],
-              ),
-            ),
-          ),
-        ],
-      ),
-      floatingActionButton: Column(
-              verticalDirection: VerticalDirection.up, // childrenの先頭を下に配置
-              mainAxisSize: MainAxisSize.min,
-              children: <Widget>[
-                FloatingActionButton(
-                  // backgroundColor: Colors.redAccent[100],
-                  backgroundColor: Colors.grey[350],
-                  onPressed: () {
-                    print("pressed");
-                  },
-                ),
-                Container(
-                  // 余白のためContainerでラップ
-                  margin: EdgeInsets.only(bottom: 16.0),
-                  child: FloatingActionButton(
-                    backgroundColor: Colors.amberAccent,
-                    onPressed: () {
-                      print("pressed");
-                    },
-                  ),
-                ),
-                Container(
-                  // 余白のためContainerでラップ
-                  margin: EdgeInsets.only(bottom: 16.0),
-                  child: FloatingActionButton(
-                    backgroundColor: Colors.amberAccent,
-                    onPressed: () {
-                      print("pressed");
-                    },
-                  ),
-                ),
-              ],
-            ),
-          );
+      body: Home(),  
+    );
   }
 }

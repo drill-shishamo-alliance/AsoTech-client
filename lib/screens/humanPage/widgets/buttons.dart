@@ -1,42 +1,19 @@
 import 'package:flutter/material.dart';
 
-class Human extends StatefulWidget {
+class Buttons extends StatefulWidget {
   @override
-  _HumanState createState() => _HumanState();
+  _ButtonState createState() => _ButtonState();
 }
 
-class _HumanState extends State<Human> {
+class _ButtonState extends State<Buttons> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Material App"),
-      ),
-      body: Stack(
-        children: <Widget>[
-          Image.asset(
-            "assets/twitter.png",
-            fit: BoxFit.cover,
-            height: double.infinity,
-            width: double.infinity,
-            alignment: Alignment.center,
-          ),
-          Align(
-            alignment: Alignment.topLeft,
-            child: Text('左上'),
-          ),
-          Align(
-            alignment: Alignment.topRight,
-            child: Text('右上'),
-          ),
-        ],
-      ),
       floatingActionButton: Column(
         verticalDirection: VerticalDirection.up, // childrenの先頭を下に配置
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
           FloatingActionButton(
-            heroTag: "1",
             // backgroundColor: Colors.redAccent[100],
             backgroundColor: Colors.grey[350],
             onPressed: () {
@@ -46,8 +23,9 @@ class _HumanState extends State<Human> {
           Container(
             // 余白のためContainerでラップ
             margin: EdgeInsets.only(bottom: 16.0),
+
             child: FloatingActionButton(
-              heroTag: "2",
+              heroTag: null,
               backgroundColor: Colors.amberAccent,
               onPressed: () {
                 print("pressed");
@@ -58,7 +36,6 @@ class _HumanState extends State<Human> {
             // 余白のためContainerでラップ
             margin: EdgeInsets.only(bottom: 16.0),
             child: FloatingActionButton(
-              heroTag: "3",
               backgroundColor: Colors.amberAccent,
               onPressed: () {
                 print("pressed");
