@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:async';
 
+import 'package:asotech_client/repositories/body/body.dart';
 import 'package:meta/meta.dart';
 import 'package:http/http.dart' as http;
 
@@ -13,8 +14,21 @@ class AsotechApiClient {
 
   AsotechApiClient({@required this.httpClient}) : assert(httpClient != null);
 
+  //Are All Member Ready
+  Future<User> getUser() async {
+    final readyUrl = '$baseUrl/users';
+    final readyResponse = await this.httpClient.get(readyUrl);
+    if (readyResponse.statusCode != 200) {
+      throw Exception('error getting Room status');
+    }
+
+    final readyJson = jsonDecode(readyResponse.body) as List;
+    return readyJson.first;
+  }
+
+
   //Room / Create The Room
-  Future<RoomStatus> getCreateRoom(num userid, num time) async {
+  Future<List<CreateRoomBody>> createRoom(String userid, num time) async {
     final createRoomUrl = '$baseUrl/rooms/';
     final createRoomResponse = await this
         .httpClient
@@ -27,7 +41,7 @@ class AsotechApiClient {
   }
 
   //Are All Member Ready
-  Future<bool> getReady(num userid) async {
+  Future<bool> getReady(String userid) async {
     final readyUrl = '$baseUrl/rooms/$userid/checkin/status';
     final readyResponse = await this.httpClient.get(readyUrl);
     if (readyResponse.statusCode != 200) {
