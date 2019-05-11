@@ -20,7 +20,6 @@ class _DemonState extends State<Demon> {
   @override
   void initState() {
     super.initState();
-
     initPlatformState();
     _locationService.onLocationChanged().listen((LocationData result) async {
       setState(() {
@@ -33,27 +32,33 @@ class _DemonState extends State<Demon> {
 
   void _onMapCreated(GoogleMapController controller) {
     _controller.complete(controller);
-
   }
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text('Maps Sample App'),
-          backgroundColor: Colors.green[700],
-        ),
-        body: GoogleMap(
-          onMapCreated: _onMapCreated,
-          initialCameraPosition: CameraPosition(
-            target: LatLng(currentLocation.latitude, currentLocation.longitude),
-            zoom: 17.0,
+    if (currentLocation == null) {
+      return new Center(
+        child: new CircularProgressIndicator(),
+      );
+    } else {
+      return MaterialApp(
+        home: Scaffold(
+          appBar: AppBar(
+            title: Text('Maps Sample App'),
+            backgroundColor: Colors.green[700],
           ),
-          myLocationEnabled: true,
+          body: GoogleMap(
+            onMapCreated: _onMapCreated,
+            initialCameraPosition: CameraPosition(
+              target:
+                  LatLng(currentLocation.latitude, currentLocation.longitude),
+              zoom: 17.0,
+            ),
+            myLocationEnabled: true,
+          ),
         ),
-      ),
-    );
+      );
+    }
   }
 
   void initPlatformState() async {
@@ -61,11 +66,12 @@ class _DemonState extends State<Demon> {
     try {
       myLocation = await _locationService.getLocation();
       error = "";
-    }on PlatformException catch(e){
-      if(e.code == 'PERMISSION_DENITED')
+    } on PlatformException catch (e) {
+      if (e.code == 'PERMISSION_DENITED')
         error = 'Permission denited';
-      else if(e.code == 'PERMISSION_DENITED_NEVER_ASK')
-        error = 'Permission denited - please ask the user to enable it from the app settings';
+      else if (e.code == 'PERMISSION_DENITED_NEVER_ASK')
+        error =
+            'Permission denited - please ask the user to enable it from the app settings';
       myLocation = null;
     }
     setState(() {
