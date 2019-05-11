@@ -14,6 +14,7 @@ abstract class IAsotechApiClient {
   Future<RemainingHuman> getRemainingHumans(String userId, String roomId);
   Future<List<HumanLocation>> getHumansLocation(String userId, String roomId);
   Future<List<HumanLocation>> getHumanCollaborate(String userId, String roomId);
+//   Future<String> createUserId(String )
 }
 
 class AsotechApiClient implements IAsotechApiClient{

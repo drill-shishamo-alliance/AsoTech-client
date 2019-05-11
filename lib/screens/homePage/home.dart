@@ -1,4 +1,5 @@
-import 'package:asotech_client/screens/humanPage/human.dart';
+import 'package:asotech_client/screens/demonWidgetPage/demon_widget.dart';
+import 'package:asotech_client/screens/humanWidgetPage/human_widget.dart';
 import 'package:flutter/material.dart';
 
 class Home extends StatefulWidget {
@@ -10,26 +11,52 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Container(
-          margin: EdgeInsets.only(bottom: 30.0),
-          child: RaisedButton(
-            onPressed: () {
-              print("pressed");
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) {
-                    return Human();
-                  },
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Container(
+              margin: EdgeInsets.only(bottom: 30.0),
+              child: RaisedButton(
+                onPressed: () {
+                  print("pressed police");
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) {
+                        return DemonWidget();
+                      },
+                    ),
+                  );
+                },
+                child: Text(
+                  "警察",
+                  style: TextStyle(color: Colors.white),
                 ),
-              );
-            },
-            child: Text(
-              "Start!!!",
-              style: TextStyle(color: Colors.white),
+                color: Colors.pink[500],
+              ),
             ),
-            color: Colors.pink[500],
-          ),
+            Container(
+              margin: EdgeInsets.only(bottom: 30.0),
+              child: RaisedButton(
+                onPressed: () {
+                  print("pressed thief");
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) {
+                        return HumanWidget();
+                      },
+                    ),
+                  );
+                },
+                child: Text(
+                  "泥棒",
+                  style: TextStyle(color: Colors.white),
+                ),
+                color: Colors.pink[500],
+              ),
+            ),
+          ],
         ),
       ),
     );
