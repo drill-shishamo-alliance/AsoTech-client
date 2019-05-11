@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:asotech_client/screens/humanPage/widgets/widgets.dart';
 
 class Human extends StatefulWidget {
   @override
@@ -21,14 +22,8 @@ class _HumanState extends State<Human> {
             width: double.infinity,
             alignment: Alignment.center,
           ),
-          Align(
-            alignment: Alignment.topLeft,
-            child: Text('左上'),
-          ),
-          Align(
-            alignment: Alignment.topRight,
-            child: Text('右上'),
-          ),
+          Timer(),
+          Cooperation(),
         ],
       ),
       floatingActionButton: Column(
