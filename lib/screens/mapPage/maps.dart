@@ -12,7 +12,10 @@ class Maps extends StatefulWidget {
 
 class _MapsState extends State<Maps> {
   LocationData currentLocation;
+
   // StreamSubscription<LocationData> locationSubscription;
+
+  List<Marker> allMarkers = [];
 
   Location _locationService = new Location();
   String error;
@@ -20,10 +23,38 @@ class _MapsState extends State<Maps> {
   @override
   void initState() {
     super.initState();
+
     initPlatformState();
+
     _locationService.onLocationChanged().listen((LocationData result) async {
       setState(() {
         currentLocation = result;
+//        allMarkers.add(Marker(
+//            markerId: MarkerId('player1'),
+//            draggable: true,
+//            onTap: (){
+//              print('Marker Tapped');
+//            },
+//            position: LatLng(currentLocation.latitude, currentLocation.longitude),
+//        ));
+        allMarkers.add(Marker(
+            markerId: MarkerId('player2'),
+            draggable: true,
+            onTap: () {
+              print('Marker Tapped');
+            },
+            position: LatLng(currentLocation.latitude + 0.00010,
+                currentLocation.longitude + 0.00010),
+            infoWindow: InfoWindow(title: 'player2', snippet: '泥棒')));
+        allMarkers.add(Marker(
+            markerId: MarkerId('player3'),
+            draggable: true,
+            onTap: () {
+              print('Marker Tapped');
+            },
+            position: LatLng(currentLocation.latitude + 0.00020,
+                currentLocation.longitude + 0.0005),
+            infoWindow: InfoWindow(title: 'player3', snippet: '泥棒')));
       });
     });
   }
@@ -42,14 +73,16 @@ class _MapsState extends State<Maps> {
       );
     } else {
       return MaterialApp(
+        debugShowCheckedModeBanner: false,
         home: Scaffold(
           body: GoogleMap(
             onMapCreated: _onMapCreated,
             initialCameraPosition: CameraPosition(
               target:
-              LatLng(currentLocation.latitude, currentLocation.longitude),
-              zoom: 17.0,
+                  LatLng(currentLocation.latitude, currentLocation.longitude),
+              zoom: 18.0,
             ),
+            markers: Set.from(allMarkers),
             myLocationEnabled: true,
           ),
         ),
@@ -67,7 +100,7 @@ class _MapsState extends State<Maps> {
         error = 'Permission denited';
       else if (e.code == 'PERMISSION_DENITED_NEVER_ASK')
         error =
-        'Permission denited - please ask the user to enable it from the app settings';
+            'Permission denited - please ask the user to enable it from the app settings';
       myLocation = null;
     }
     setState(() {

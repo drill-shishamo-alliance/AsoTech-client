@@ -12,7 +12,7 @@ class _HumanState extends State<Human> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Material App"),
+        title: Text("AsoTech"),
       ),
       body: Stack(
         children: <Widget>[

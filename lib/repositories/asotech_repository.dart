@@ -20,27 +20,27 @@ class AsotechRepository {
   AsotechRepository({@required this.asotechApiClient}): assert(asotechApiClient != null);
 
   Future<RoomId> createTheRoom(String userId) async {
-    return asotechApiClient.createTheRoom(userId);
+    return await asotechApiClient.createTheRoom(userId);
   }
 
   Future<bool> belongToTheRoom(String userId, String roomId) async {
-   return asotechApiClient.belongToTheRoom(userId, roomId);
+   return await asotechApiClient.belongToTheRoom(userId, roomId);
   }
 
   Future<bool> isAllMemberReady(String roomId) async {
-    return asotechApiClient.isAllMemberReady(roomId);
+    return await asotechApiClient.isAllMemberReady(roomId);
   }
 
   Future<RemainingHuman> getRemainingHumans(String userId, String roomId) async {
-    return asotechApiClient.getRemainingHumans(userId, roomId);
+    return await asotechApiClient.getRemainingHumans(userId, roomId);
   }
 
   Future<List<HumanLocation>> getHumansLocation(String userId, String roomId) async {
-    return asotechApiClient.getHumansLocation(userId, roomId);
+    return await asotechApiClient.getHumansLocation(userId, roomId);
   }
 
   Future<List<HumanLocation>> getHumanCollaborate(String userId, String roomId) async {
-    return asotechApiClient.getHumanCollaborate(userId, roomId);
+    return await asotechApiClient.getHumanCollaborate(userId, roomId);
   }
 }
 

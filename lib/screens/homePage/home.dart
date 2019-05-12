@@ -1,4 +1,6 @@
+import 'package:asotech_client/screens/demonPage/demon.dart';
 import 'package:asotech_client/screens/demonWidgetPage/demon_widget.dart';
+import 'package:asotech_client/screens/humanPage/human.dart';
 import 'package:asotech_client/screens/humanWidgetPage/human_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -23,7 +25,7 @@ class _HomeState extends State<Home> {
                     context,
                     MaterialPageRoute(
                       builder: (context) {
-                        return DemonWidget();
+                        return Demon();
                       },
                     ),
                   );
@@ -44,7 +46,7 @@ class _HomeState extends State<Home> {
                     context,
                     MaterialPageRoute(
                       builder: (context) {
-                        return HumanWidget();
+                        return Human();
                       },
                     ),
                   );
